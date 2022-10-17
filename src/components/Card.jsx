@@ -1,18 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
+const Card = ({todo}) =>{
+    
 
-const Card = () =>{
-
- 
     return(
         <div>
         <StCards>
             <StCardtop>
-                <StCardtitle>제목</StCardtitle>
+                <StCardtitle>{todo.title}</StCardtitle>
                 <button>삭제</button>
             </StCardtop>
-                <StCardbottom>작성자: </StCardbottom>    
+                <StCardbottom>{todo.user}</StCardbottom>    
         </StCards>
 
         </div>
