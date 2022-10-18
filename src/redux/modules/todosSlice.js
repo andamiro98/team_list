@@ -11,26 +11,19 @@ import axios from "axios";
 
     // const initialState = {
     //     todos : [
-    //         {id: 1, title: "React 공부하기", user: "익명12"},
+    //         {"id": 1, "title": "React 공부하기", "user": "익명12"},
     //         {id: 2, title: "JS 공부하기", user: "익명25"},
     //         {id: 3, title: "CSS 공부하기", user: "익명07"},
     //     ],
 
     // };
 
-
-    const initialState = {
-        todos: [],
-        isLoading: false,
-        error: null,
-    };
-
     export const __getTodoThunk = createAsyncThunk(
         "GET_TODO",
         async (payload, thunkAPI) => {
             try{
                 const data = await axios.get("http://localhost:3001/todos");
-                console.log(data)
+                
                 return thunkAPI.fulfillWithValue(data.data);
             }catch (error) {
                 return thunkAPI.rejectWithValue(error);
@@ -41,13 +34,21 @@ import axios from "axios";
         "DELETE_TODO",
         async (payload, thunkAPI) => {
             try {
-                const data = await axios.delete("http://localhost:3001/todos");
-                return thunkAPI.fulfillWithValue(data.data);
+                await axios.delete(`http://localhost:3001/todos/${payload}`);
+                return thunkAPI.fulfillWithValue(payload);
+                
             } catch (error) {
                 return thunkAPI.rejectWithValue(error);
             }}
         );
-        
+
+    const initialState = {
+        todos: [],
+        isLoading: false,
+        isSuccess: false,
+        error: null,
+    };
+
         export const todosSlice = createSlice({
             name: "todos",
             initialState,
@@ -69,8 +70,9 @@ import axios from "axios";
                 },
                 [__deleteTodoThunk.fulfilled]: (state, action) => {
                   state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경
-                  state.todos = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣음
+                  state.todos = state.todos.filter((todo) => todo.id !== action.payload); // Store에 있는 todos에 서버에서 가져온 todos를 넣음
                 },
+                
                 [__deleteTodoThunk.rejected]: (state, action) => {
                   state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경
                   state.error = action.payload; // catch 된 error 객체를 state.error에 넣음

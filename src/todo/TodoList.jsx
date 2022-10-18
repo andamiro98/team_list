@@ -6,7 +6,6 @@ import {__getTodoThunk} from "../redux/modules/todosSlice"
 
 const TodoList = () =>{
     const todos = useSelector((state) => state.todos.todos);
-    console.log(todos)
     const dispatch = useDispatch();
 
     //useEffect -> mount될 때 dispatch(get),의존성배열 [dispatch]
@@ -14,6 +13,12 @@ const TodoList = () =>{
         dispatch(__getTodoThunk());
     },[dispatch]);
     
+    if (todos.length === 0)
+        return(
+            <div>
+                할일 없음
+            </div>
+        );
     
     return(
         <div>
@@ -26,4 +31,4 @@ const TodoList = () =>{
     )
 }
 
-export default TodoList
+export default TodoList;

@@ -20,9 +20,11 @@ const Todo = () =>{
                 <div>
                     <StBoxtop>
                         <Stid>id:{todoid.id}</Stid>
-                        <Link to ={`/todos`}>
-                            <Stlink>이전으로</Stlink>
-                        </Link>
+                        <Stlink onClick={() =>{
+                            navigate("/todos");
+                        }}>
+                            이전으로
+                        </Stlink>
                     </StBoxtop>
                     <St_h1> 📝 {todoid.title} </St_h1>
                     <St_h4> 내용이 들어갑니다 </St_h4>
@@ -80,6 +82,7 @@ const Stlink = styled.div`
     text-decoration: underline;
     color: #256D85;
     font-size: 24px;
+    cursor: pointer;
 `
 
 const St_h1 = styled.h1`
