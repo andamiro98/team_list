@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Todos = () =>{
     
     return (
-        <Stlayout>
+        <Stlayout> 
             <Header/>
             <h1>Todo List</h1>
             <TodoList/>

@@ -1,44 +1,36 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import HomeBox from "../home/HomeBox"
-import { Layout } from "../components"
-
-
-
+import Layout from "../components/Layout"
 
 const Home = () => {
 
     const navigate = useNavigate();
-
-
+    
     return (
-        <Layout>
-
-            <container>
+        <div>
+            <Layout/>
+            <div>
                 <div>
-                    
                     <h1>무엇을 할까요 ?</h1>
-                    <h1>잘할수있을까요?</h1>
-                    <h1>추가하기</h1>
-                    <h1>또 추가했음</h1>
-                    
+
                     <HomeBox 
                     title="할일 기록하기"
                     onClick={() => {
                         navigate("/")
+                        //navigate("ADDTodo component")
                     }}/>
 
                     <HomeBox
                     title="TODO LIST"
                     onClick={() => {
-                        navigate("/")
+                        navigate("/todos")
                     }}/>
-
+                    
                 </div>
-            </container>
-
-        </Layout>
+            </div>
+        </div>
     )
 }
 

@@ -1,11 +1,11 @@
-
+import Router from './shared/Router';
 import './App.css';
-import Todos from './pages/Todos';
+
 
 function App() {
   return (
     <div className="App">
-      <Todos/>
+      <Router/>
     </div>
   );
 }

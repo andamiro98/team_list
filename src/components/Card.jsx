@@ -1,17 +1,42 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch} from "react-redux";
+import { __deleteTodoThunk } from "../redux/modules/todosSlice";
+import { useNavigate } from "react-router-dom";
+
 
 const Card = ({todo}) =>{
-    
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const onDeleteHandler = () => {
+        dispatch(__deleteTodoThunk(todo.id));
+    };
     return(
         <div>
-        <StCards>
+        <StCards 
+        onClick={() =>{
+            navigate(`/todo/${todo.id}`);
+        }}
+        >
             <StCardtop>
-                <StCardtitle>{todo.title}</StCardtitle>
-                <button>삭제</button>
+                <StCardtitle>📝 {todo.title}</StCardtitle>
+                <button onClick={(e)=> {
+                    e.stopPropagation();
+                    const result = window.confirm("삭제하시겠습니까?")
+                    if(result) {
+                        return onDeleteHandler();
+                    }else{
+                        return;
+                    }
+                }}
+                >
+                    삭제
+                </button>
             </StCardtop>
-                <StCardbottom>{todo.user}</StCardbottom>    
+
+                <StCardbottom>작성자: {todo.user}</StCardbottom>    
         </StCards>
 
         </div>
@@ -31,6 +56,7 @@ const StCards = styled.div`
     border-radius: 12px;
     width: 100%;
     margin: 12px auto 12px auto;
+    cursor: pointer;
 `
 
 const StCardtop = styled.div`
