@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -14,6 +15,7 @@ const Card = ({todo}) =>{
         <StCards>
             <StCardtop>
                 <StCardtitle>{todo.title}</StCardtitle>
+
                 <button
                 onClick={() => {
                     if(window.confirm("진짜 지울꺼에요?")) {
@@ -24,6 +26,7 @@ const Card = ({todo}) =>{
                 }}
                 
                 >삭제</button>
+
             </StCardtop>
                 <StCardbottom>{todo.user}</StCardbottom>    
         </StCards>
@@ -61,3 +64,4 @@ const StCardbottom = styled.div`
     margin: 20px 0px;
     font-size: 12px;
 `
+
