@@ -19,18 +19,17 @@ const Home = () => {
                 <div>
                     
                     <h1>무엇을 할까요 ?</h1>
-
                     
                     <HomeBox 
                     title="할일 기록하기"
                     onClick={() => {
-                        navigate("/")
+                        navigate("/Todos")
                     }}/>
 
                     <HomeBox
                     title="TODO LIST"
                     onClick={() => {
-                        navigate("/")
+                        navigate("/Todo")
                     }}/>
 
                 </div>

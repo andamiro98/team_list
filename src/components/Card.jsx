@@ -1,15 +1,32 @@
 import React from "react";
+
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const Card = ({todo}) =>{
-    
+    const dispatch = useDispatch();
+
+    const onDeleteHandler = () => {
+
+    }
 
     return(
         <div>
         <StCards>
             <StCardtop>
                 <StCardtitle>{todo.title}</StCardtitle>
-                <button>삭제</button>
+
+                <button
+                onClick={() => {
+                    if(window.confirm("진짜 지울꺼에요?")) {
+                        return onDeleteHandler();
+                    } else {
+                        return;
+                    }
+                }}
+                
+                >삭제</button>
+
             </StCardtop>
                 <StCardbottom>{todo.user}</StCardbottom>    
         </StCards>
@@ -47,3 +64,4 @@ const StCardbottom = styled.div`
     margin: 20px 0px;
     font-size: 12px;
 `
+
