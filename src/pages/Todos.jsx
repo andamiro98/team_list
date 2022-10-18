@@ -8,7 +8,7 @@ const Todos = () =>{
     return (
         <Stlayout>
             <Header/>
-            <h1>Todo List</h1>
+                <h1>Todo List</h1>
             <TodoList/>
         </Stlayout>
     )

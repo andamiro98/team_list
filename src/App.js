@@ -1,10 +1,8 @@
 
-import "./App.css";
-import Formpage from "./page/Formpage";
-import { Route, Routes } from "react-router-dom";
-import Homepage from "./page/Homepage";
-import Listpage from "./page/Listpage";
-import axios from "axios";
+import React from "react";
+
+import Router from "./shared/Router"
+
 
 const App = () => {
   // //URL감춰버리기
@@ -17,13 +15,9 @@ const App = () => {
   // };
 
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/Form" element={<Formpage />} />
-        <Route path="/List" element={<Listpage />} />
-      </Routes>
-    </div>
+    <>
+      <Router />
+    </>
   );
 };
 
