@@ -8,19 +8,18 @@ import { __addComment } from "../redux/modules/commentsSlice";
 const AddCommentForm = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  //아이디값찾아주고
-  //초기값세팅해주고
+
   const [comment, setComment] = useState({
     username: "",
     content: "",
   });
-  //바뀔값넣어주고
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (comment.content.trim() === "" || comment.username.trim() === "") {
       return alert("모든항목을 입력해라");
     }
-    //디스패치해서 넣어주고 보내주고
+   
     dispatch(__addComment({ todoId: id, ...comment }));
     setComment({
       username: "",
