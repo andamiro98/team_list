@@ -1,49 +1,44 @@
-const ADD_TODO = "ADD_TODO";
-const DEL_TODO = "DEL_TODO";
-const TOGGEL_STATUS = "TOGGEL_STATUS"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const addTodo = (payload) => {
-    return {type: ADD_TODO, payload };
-};
-
-export const delTodo = (payload) => {
-    return {type: DEL_TODO, payload};
-};
-
-export const toggleStatusTodo = (payload) => {
-    return {type: TOGGEL_STATUS, payload };
-};
-
+export const __getComment = createAsyncThunk(
+  "GET_COMMENT",
+  async (arg, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`http://localhost:3001/comment/${arg}`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
+    }
+  }
+);
 
 const initialState = {
-    todos : [
-        {id: 1, title: "React 공부하기", content: "React 1강 학습", isDone: true},
-        {id: 2, title: "React 공부하기", content: "React 2강 학습", isDone: true},
-        {id: 3, title: "React 공부하기", content: "React 3강 학습", isDone: false},
-    ],
+  data: {
+    content: "",
+    username: "",
+    id: 0,
+    todoId: 0,
+  },
+  isLoading: false,
+  error: null,
+  isGlobalEditmode: false,
 };
 
-const todos = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_TODO:
-            return {
-                ...state,
-                todos: [...state.todos, action.payload],
-            };
-        case DEL_TODO:
-            return{
-                ...state,
-                todos:[...state.todos.filter((todo) => todo.id !== action.payload.id)]
-            };
-        case TOGGEL_STATUS:
-            return{
-                ...state,
-                todos:[...state.todos.filter((todo) => todo.id !== action.payload.id), action.payload]
-            }
+export const commentSlice = createSlice({
+  name: "comment",
+  initialState,
+  reducers: {
+    globalEditModeToggle: (state, action) => {
+      state.isGlobalEditmode = action.payload;
+    },
+  },
+  extraReducers: {
+    [__getComment.fulfilled]: (state, action) => {
+      state.data = action.payload;
+    },
+  },
+});
 
-            default:
-                return state;
-    };
-};
-
-export default todos;
+export const { globalEditModeToggle } = commentSlice.actions;
+export default commentSlice.reducer;
