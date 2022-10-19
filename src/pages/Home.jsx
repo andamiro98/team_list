@@ -16,13 +16,14 @@ const Home = () => {
     navigate("/todos");
   };
 
+ 
 
   return (
     <Stlayout>
       <div>
         <div>
           <Header />
-          <h1>무엇을 할까요 ?</h1>
+          <h1>무엇을 할까요 ? 할게 있나요?</h1>
 
           <div onClick={goToADDTodo}>
             <div>할일 기록하기</div>
