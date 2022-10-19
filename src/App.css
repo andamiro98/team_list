@@ -1,3 +1,7 @@
+body {
+  background-color: lightcyan;
+}
+
 .header {
   align-items: center;
   border: 1px solid #ddd;
@@ -46,4 +50,10 @@
   width: 700px;
   border-radius: 10px;
   color: white;
+}
+
+.layout {
+  margin: 0 auto;
+  max-width: 1200px;
+  min-width: 800px;
 }

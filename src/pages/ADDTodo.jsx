@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-
+import styled from "styled-components";
 export const Formepage = ({ todo, setTodo }) => {
   /////이동시켜주는함수
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export const Formepage = ({ todo, setTodo }) => {
   };
 
   return (
-    <>
+    <Stlayout>
       <Header />
       <form
         className="FORM-GROUP"
@@ -90,8 +90,14 @@ export const Formepage = ({ todo, setTodo }) => {
           </button>
         </div>
       </form>
-    </>
+    </Stlayout>
   );
 };
 
 export default Formepage;
+
+const Stlayout = styled.div`
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 800px;
+`;

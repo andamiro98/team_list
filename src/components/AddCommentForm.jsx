@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-
+import styled from "styled-components";
 const Detailpage = () => {
   const [comment, setcomment] = useState({
     title: "",
@@ -12,7 +12,7 @@ const Detailpage = () => {
   //env처리해서 안보여주게하기
 
   return (
-    <>
+    <Stlayout>
       <form
         className="FORM-GROUP"
         onSubmit={(e) => {
@@ -43,8 +43,14 @@ const Detailpage = () => {
           </button>
         </div>
       </form>
-    </>
+    </Stlayout>
   );
 };
 
 export default Detailpage;
+
+const Stlayout = styled.div`
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 800px;
+`;

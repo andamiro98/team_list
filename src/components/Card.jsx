@@ -27,6 +27,7 @@ const StCards = styled.div`
   border-radius: 12px;
   width: 100%;
   margin: 12px auto 12px auto;
+  background-color: lightskyblue;
 `;
 
 const StCardtop = styled.div`

@@ -1,11 +1,12 @@
 import React from "react";
-import styled from "styled-components";
-import Header from "header";
+import Home from "../pages/Home";
 
-const Layout = () => {
+const Layout = ({ Home }) => {
   return (
-    <Layout>
-      <Header />
+    <Layout class="layout">
+      <Home />
     </Layout>
   );
 };
+
+export default Layout;
