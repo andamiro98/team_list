@@ -1,10 +1,11 @@
-
 import "./App.css";
-import Formpage from "./page/Formpage";
+
+import ADDTodo from "./pages/ADDTodo";
 import { Route, Routes } from "react-router-dom";
-import Homepage from "./page/Homepage";
-import Listpage from "./page/Listpage";
-import axios from "axios";
+import Todos from "./pages/Todos";
+import Home from "./pages/Home";
+import { useState } from "react";
+import Todo from "./pages/Todo";
 
 const App = () => {
   // //URL감춰버리기
@@ -15,13 +16,21 @@ const App = () => {
   //   axios.delete(`${URL}/${todoId}`);
   //   axios.patch(`${URL}/${todoId}`, edit);
   // };
-
+  const [todo, setTodo] = useState({
+    Writer: "",
+    title: "",
+    contents: "",
+  });
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/Form" element={<Formpage />} />
-        <Route path="/List" element={<Listpage />} />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/Form"
+          element={<ADDTodo todo={todo} setTodo={setTodo} />}
+        />
+        <Route path="/List" element={<Todos />} />
+        <Route path="/Todo" element={<Todo />} />
       </Routes>
     </div>
   );

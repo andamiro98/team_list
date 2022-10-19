@@ -1,35 +1,22 @@
 import React from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import HomeBox from "../home/HomeBox";
-import { Layout } from "../components";
-
-const Home = () => {
-  //   const navigate = useNavigate();
-
+import Header from "../components/Header";
+const Homepage = () => {
+  const navigate = useNavigate();
+  const goToFormpage = () => {
+    navigate("/Form");
+  };
+  const goToListpage = () => {
+    navigate("/List");
+  };
   return (
-    <Layout>
-      <container>
-        <div>
-          <h1>무엇을 할까요 ?</h1>
+    <div>
+      <Header />
+      <button onClick={goToFormpage}>폼입력페이지</button>
 
-          <HomeBox
-            title="할일 기록하기"
-            onClick={() => {
-              navigate("/");
-            }}
-          />
-
-          <HomeBox
-            title="TODO LIST"
-            onClick={() => {
-              navigate("/");
-            }}
-          />
-        </div>
-      </container>
-    </Layout>
+      <button onClick={goToListpage}>리스트 페이지</button>
+    </div>
   );
 };
 
-export default Home;
+export default Homepage;
