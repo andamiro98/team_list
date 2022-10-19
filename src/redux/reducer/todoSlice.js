@@ -14,7 +14,7 @@ export const __getTodos = createAsyncThunk(
   "todos/getTodos",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:5000/todos");
+      const data = await axios.get("http://localhost:3001/todos");
       return thunkAPI.fulfillWithValue(data.data);
       //fulfillWithValue란?`**fulfillWithValue` 는 툴킷에서 제공하는 API 입니다.**
 
