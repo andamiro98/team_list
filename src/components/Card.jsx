@@ -43,7 +43,6 @@ const Card = ({todo}) =>{
     );
 };
 
-
 export default Card;
 
 const StCards = styled.div`
@@ -60,16 +59,15 @@ const StCards = styled.div`
 `
 
 const StCardtop = styled.div`
-    display: flex;
-    justify-content: space-between;
-`
+  display: flex;
+  justify-content: space-between;
+`;
 const StCardtitle = styled.div`
-    font-size: 20px;
-    font-weight: bold;
-`
-
+  font-size: 20px;
+  font-weight: bold;
+`;
 
 const StCardbottom = styled.div`
-    margin: 20px 0px;
-    font-size: 12px;
-`
+  margin: 20px 0px;
+  font-size: 12px;
+`;

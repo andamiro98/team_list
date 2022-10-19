@@ -14,10 +14,13 @@ const Todos = () =>{
     )
 }
 
-export default Todos
+export default Todos;
 
 const Stlayout = styled.div`
-    margin: 0 auto;
-    max-width: 1000px;
-    min-width: 800px;
-`
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 800px;
+  height: 2000px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+`;
