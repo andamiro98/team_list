@@ -1,3 +1,10 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "user": "test",
+      "title": "testtesttest",
+      "body": "test",
+      "id": 1
+    }
+  ]
 }
