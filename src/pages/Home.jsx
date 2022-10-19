@@ -9,33 +9,33 @@ import Layout from "../components/Layout"
 const Home = () => {
   const navigate = useNavigate();
   const goToADDTodo = () => {
-    navigate("/Form");
+    navigate("/add");
   };
   const goToTodoList = () => {
-    navigate("/List");
+    navigate("/todos");
   };
 
   return (
     <Stlayout>
-      <container>
+      <div>
         <div>
           <Header />
           <h1>무엇을 할까요 ?</h1>
 
-          <container onClick={goToADDTodo}>
+          <div onClick={goToADDTodo}>
             <div>할일 기록하기</div>
             <BsArrowRightCircle size="32"></BsArrowRightCircle>
-          </container>
-          <container onClick={goToTodoList}>
+          </div>
+          <div onClick={goToTodoList}>
             <div>할일 리스트</div>
             <BsArrowRightCircle size="32"></BsArrowRightCircle>
-          </container>
+          </div>
 
           {/* <HomeBox title="할일 기록하기" onClick={goToADDTodo} />
 
         <HomeBox title="TODO LIST" onClick={goToTodoList} /> */}
         </div>
-      </container>
+      </div>
     </Stlayout>
   );
 };

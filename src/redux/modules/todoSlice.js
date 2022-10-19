@@ -38,7 +38,7 @@ const initialState = {
 };
 
 export const todoSlice = createSlice({
-    name: "todos", //모듈
+    name: "todo", //모듈
     initialState,
     reducers: {}, //action value + action creator
     extraReducers:{

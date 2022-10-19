@@ -4,9 +4,7 @@ import todo from "../modules/todoSlice"
 
 const store = configureStore({
     reducer: { 
-        todos: todos,
-        todo: todo,
-        
+        todos
     },
 });
 export default store;
