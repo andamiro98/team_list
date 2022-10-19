@@ -1,5 +1,4 @@
 import "./App.css";
-
 import ADDTodo from "./pages/ADDTodo";
 import { Route, Routes } from "react-router-dom";
 import Todos from "./pages/Todos";
