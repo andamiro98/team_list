@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import { useNavigate,useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { __getTodoThunk, __updateTodoThunk} from "../redux/modules/todoSlice";
-
+import AddCommentForm from "../components/AddCommentForm"
 
 const Todo = () =>{
     const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const Todo = () =>{
     const todo = useSelector((state) => state.todos.todos);
     const { id } = useParams();
     const todoid = todo.filter((todo) => todo.id === Number(id))[0];
+    
 
     const [saveChange, setsaveChange] = useState(false);
     //true일 때 : 저장하기
@@ -117,7 +118,7 @@ const Todo = () =>{
             </St_box>
             
                 
-            
+            <AddCommentForm></AddCommentForm>
         </div>
     );
         

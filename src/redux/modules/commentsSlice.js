@@ -13,7 +13,7 @@ export const __getCommentsThunk = createAsyncThunk(
   }
 );
 
-export const __getCommnetsByTodoId = createAsyncThunk(
+export const __getCommentsByTodoId = createAsyncThunk(
   "GET_COMMENT_BY_TODO_ID",
   async (arg, thunkAPI) => {
     try {
@@ -43,6 +43,18 @@ export const __addComment = createAsyncThunk(
     try {
       const { data } = await axios.post(`http://localhost:3001/comments`, arg);
       return thunkAPI.fulfillWithValue(data);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
+    }
+  }
+);
+
+export const __deleteComment = createAsyncThunk(
+  "DELETE_COMMENT",
+  async (arg, thunkAPI) => {
+    try {
+      await axios.delete(`http://localhost:3001/comments/`, arg);
+      return thunkAPI.fulfillWithValue(arg);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);
     }
@@ -82,14 +94,14 @@ export const commentsSlice = createSlice({
     },
 
     // 댓글 조회 (todoId)
-    [__getCommnetsByTodoId.pending]: (state) => {
+    [__getCommentsByTodoId.pending]: (state) => {
       state.commentsByTodoId.isLoading = true;
     },
-    [__getCommnetsByTodoId.fulfilled]: (state, action) => {
+    [__getCommentsByTodoId.fulfilled]: (state, action) => {
       state.commentsByTodoId.isLoading = false;
       state.commentsByTodoId.data = action.payload;
     },
-    [__getCommnetsByTodoId.rejected]: (state, action) => {
+    [__getCommentsByTodoId.rejected]: (state, action) => {
       state.commentsByTodoId.isLoading = false;
       state.commentsByTodoId.error = action.payload;
     },
@@ -114,6 +126,23 @@ export const commentsSlice = createSlice({
     },
     [__addComment.pending]: (state) => {
       state.commentsByTodoId.isLoading = true;
+    },
+    
+
+    //댓글 삭제
+    [__deleteComment.pending]: (state) => {
+      state.commentsByTodoId.isLoading = true;
+    },
+    [__deleteComment.fulfilled]: (state, action) => {
+      state.commentsByTodoId.isLoading = false;
+      const target = state.commentsByTodoId.data.findIndex(
+        (comment) => comment.id === action.payload
+      );
+      state.commentsByTodoId.data.splice(target, 1);
+    },
+    [__deleteComment.rejected]: (state, action) => {
+      state.commentsByTodoId.isLoading = false;
+      state.commentsByTodoId.error = action.payload;
     },
   },
 });

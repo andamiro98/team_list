@@ -66,7 +66,7 @@ import axios from "axios";
             },
             [__addTodoThunk.fulfilled]: (state, action) => {
                 state.isLoading = false; 
-                console.log(action);
+                
                 state.todos = [...state.todos, action.payload]; 
             },
             [__addTodoThunk.rejected]: (state, action) => {
