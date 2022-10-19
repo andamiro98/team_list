@@ -1,12 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-import Header from "header";
-
+import Header from "./Header"
 
 const Layout = () => {
-    return (
+    return(
         <>
-            <Header/>
+            <Header />
         </>
     )
 }
+export default Layout;
