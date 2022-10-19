@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import HomeBox from "../home/HomeBox"
 import Layout from "../components/Layout"
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Home = () => {
   const goToTodoList = () => {
     navigate("/todos");
   };
+
 
   return (
     <Stlayout>
