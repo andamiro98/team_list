@@ -1,34 +1,62 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch} from "react-redux";
+import { __deleteTodoThunk } from "../redux/modules/todosSlice";
+import { useNavigate } from "react-router-dom";
 
-const Card = ({ todo }) => {
-  return (
-    <div>
-      <StCards>
-        <StCardtop>
-          <StCardtitle>{todo.title}</StCardtitle>
-          <button>삭제</button>
-        </StCardtop>
-        <StCardbottom>{todo.Writer}</StCardbottom>
-      </StCards>
-    </div>
-  );
+
+const Card = ({todo}) =>{
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const onDeleteHandler = () => {
+        dispatch(__deleteTodoThunk(todo.id));
+    };
+    return(
+        <div>
+        <StCards 
+        onClick={() =>{
+            navigate(`/todo/${todo.id}`);
+        }}
+        >
+            <StCardtop>
+                <StCardtitle>📝 {todo.title}</StCardtitle>
+                <button onClick={(e)=> {
+                    e.stopPropagation();
+                    const result = window.confirm("삭제하시겠습니까?")
+                    if(result) {
+                        return onDeleteHandler();
+                    }else{
+                        return;
+                    }
+                }}
+                >
+                    삭제
+                </button>
+            </StCardtop>
+
+                <StCardbottom>작성자: {todo.user}</StCardbottom>    
+        </StCards>
+
+        </div>
+    );
 };
 
 export default Card;
 
 const StCards = styled.div`
-  box-sizing: border-box;
-  padding: 12px;
-  height: 90px;
-  border: 1px solid #ddd;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 12px;
-  width: 100%;
-  margin: 12px auto 12px auto;
-  background-color: lightskyblue;
-`;
+    box-sizing: border-box;
+    padding: 12px;
+    height: 90px;
+    border: 1px solid #ddd;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    width: 100%;
+    margin: 12px auto 12px auto;
+    cursor: pointer;
+`
 
 const StCardtop = styled.div`
   display: flex;

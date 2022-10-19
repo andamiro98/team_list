@@ -2,25 +2,24 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import styled from "styled-components";
-export const Formepage = ({ todo, setTodo }) => {
-  /////이동시켜주는함수
-  const navigate = useNavigate();
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { __addTodoThunk } from "../redux/modules/todosSlice";
+import AddCommentForm from "../components/AddCommentForm";
 
+export const Formepage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [todo, setTodo] = useState();
   const goToListpage = () => {
-    navigate("/List");
+    navigate("/todos");
   };
   const goToHomepage = () => {
     navigate("/");
   };
-  // 새롭게 생성하는 todo를 관리하는 state ,     post 구문
-
-  // const isValidLogin = !(todos.Writer && todos.title);
-
-  //추가버튼눌럿을때 보내는것                     post구문 여기서보내면 db.json으로 가는것 리듀서에서
-  //처리하는거아님*****
-  //추가버튼눌럿을때 보내는것                     post구문
   const onSubmitHandler = (todo) => {
-    axios.post("http://localhost:3001/todos", todo);
+    dispatch(__addTodoThunk(todo));
+    navigate("/todos");
   };
 
   return (
@@ -44,7 +43,7 @@ export const Formepage = ({ todo, setTodo }) => {
             const { value } = ev.target;
             setTodo({
               ...todo,
-              Writer: value,
+              user: value,
             });
           }}
         />
@@ -74,7 +73,7 @@ export const Formepage = ({ todo, setTodo }) => {
             const { value } = ev.target;
             setTodo({
               ...todo,
-              contents: value,
+              body: value,
             });
           }}
         />
@@ -83,13 +82,14 @@ export const Formepage = ({ todo, setTodo }) => {
             이전으로
           </button>
           <button
-            disabled={todo.contents === "" ? true : false}
+            disabled={todo?.body === "" ? true : false}
             className="buttons"
           >
             추가하기
           </button>
         </div>
       </form>
+      <AddCommentForm />
     </Stlayout>
   );
 };
